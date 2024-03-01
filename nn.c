@@ -1,14 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <time.h>
 
-#define NUM_DATA_POINTS 500
-#define NUM_TRAINING_SAMPLES 350
-#define NUM_VALIDATION_SAMPLES 100
-#define NUM_TEST_SAMPLES 50
+int data_num = 500;  // 数据点个数
+int train_num = 350; // 训练集个数
+int val_num = 100;   // 验证集个数
+int test_num = 50;   // 测试集个数
 
-#define LEARNING_RATE 0.001
-#define EPOCHS 1000
+double lr = 0.01; // 学习率
+int epochs = 100; // 迭代次数
 
 // 数据点结构体
 typedef struct
@@ -48,7 +49,7 @@ void read_data(DataPoint *data_points, const char *file_name)
         exit(1);
     }
 
-    for (int i = 0; i < NUM_DATA_POINTS; ++i)
+    for (int i = 0; i < data_num; ++i)
     {
         fscanf(file, "%lf,%lf\n", &data_points[i].x, &data_points[i].y);
     }
@@ -96,7 +97,11 @@ void initialize_linear_model(LinearModel *model)
     model->b4 = 0.0;
 }
 
-// 计算模型预测值
+/**
+ * 预测
+ * @param model 线性模型
+ * @param x 输入
+ */
 double predict(const LinearModel *model, double x)
 {
     x = model->w1 * x + model->b1;
@@ -106,8 +111,13 @@ double predict(const LinearModel *model, double x)
     return x; // y_hat = w4 * (w3 * (w2 * (w1 * x + b1) + b2) + b3) + b4
 }
 
-// 训练模型
-void train_model(LinearModel *model, DataPoint *training_set)
+/**
+ * 训练模型
+ * @param model 线性模型
+ * @param training_set 训练集
+ * @param val_set 验证集
+ */
+void train_model(LinearModel *model, DataPoint *training_set, DataPoint *val_set)
 {
 }
 
