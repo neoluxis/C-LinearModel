@@ -16,13 +16,13 @@
 #define DATA_FILE "data.txt"
 
 // 数据集划分
-#define DATA_SIZE 150
-#define TRAIN_SIZE 110
-#define VAL_SIZE 20
-#define TEST_SIZE 20
+#define DATA_SIZE 5000
+#define TRAIN_SIZE 4000
+#define VAL_SIZE 500
+#define TEST_SIZE 500
 
 // 训练参数
-#define EPOCHS 2500         // 训练次数
+#define EPOCHS 3000         // 训练次数
 #define LEARNING_RATE 0.005 // 学习率
 
 typedef struct
@@ -137,7 +137,7 @@ void test(Linear *linear, Point *data, int size)
 }
 
 /**
- * Read data from file
+ * @brief 读取数据
  * Data format:
  * x1, y1
  * x2, y2
@@ -161,6 +161,11 @@ void read_data(const char *filename, Point *data)
     fclose(file);
 }
 
+/**
+ * @brief 打乱数组
+ * @param arr 数组
+ * @param len 数组长度
+ */
 void shuffle(Point *arr, int len)
 {
     // 使用当前时间作为随机种子
@@ -203,4 +208,7 @@ int main(int argc, char const *argv[])
     printf("Testing...\n");
     test(&linear, test_data, TEST_SIZE);
     printf("Testing finished\n");
+
+    // 输出参数
+    printf("y = %fx + %f\n", linear.w, linear.b);
 }
