@@ -8,7 +8,7 @@ np.random.seed(0)
 x = np.linspace(0, 6, 150)
 
 # 生成y值，y=sin(x)并加上正态分布噪声
-mu, sigma = 0, 0.5
+mu, sigma = 0, 0.1
 # y = 3 * np.cos(x) + np.random.normal(mu, sigma, 60)
 y = -x+2+ np.random.normal(mu, sigma, 150)
 
