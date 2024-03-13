@@ -22,8 +22,8 @@
 #define TEST_SIZE 500
 
 // 训练参数
-#define EPOCHS 3000         // 训练次数
-#define LEARNING_RATE 0.005 // 学习率
+#define EPOCHS 300        // 训练次数
+#define LEARNING_RATE 0.01 // 学习率
 
 typedef struct
 {
